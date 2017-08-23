@@ -46,13 +46,6 @@ class TaskRepositoryTest {
         database.close()
     }
 
-    @Test
-    fun useAppContext() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getTargetContext()
-        Assert.assertEquals("com.tracebucket.regera", appContext.packageName)
-    }
-
     companion object {
         private val TASK = Task("a", false)
     }
