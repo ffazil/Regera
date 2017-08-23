@@ -1,4 +1,4 @@
-.idea/
+.idea
 *.iml
 .gradle
 /local.properties
@@ -7,3 +7,4 @@
 /captures
 .externalNativeBuild
 .vcs
+app/libs/
