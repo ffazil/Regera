@@ -18,13 +18,13 @@ class TaskRepositoryTest {
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    private lateinit var database: FlashStore
+    private lateinit var database: AppDatabase
 
     @Before
     fun initDb() {
         // using an in-memory database because the information stored here disappears after test
         database = Room.inMemoryDatabaseBuilder(InstrumentationRegistry.getContext(),
-                FlashStore::class.java)
+                AppDatabase::class.java)
                 // allowing main thread queries, just for testing
                 .allowMainThreadQueries()
                 .build()
