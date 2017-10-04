@@ -1,8 +1,10 @@
 package com.tracebucket.regera
 
+import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
+import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -14,7 +16,11 @@ import kotlinx.android.synthetic.main.activity_todo.*
 import kotlinx.android.synthetic.main.app_bar_todo.*
 import kotlinx.android.synthetic.main.content_todo.*
 
-class TodoActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class TodoActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
+MainFragment.OnFragmentInteractionListener {
+    override fun onFragmentInteraction(uri: Uri) {
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,20 +38,9 @@ class TodoActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
-        val invoices = mutableListOf<Invoice>(
-                Invoice("35.00", "Acme Inc.", "19237A", "28-Sep-2017", "Paid"),
-                Invoice("12.50", "Acme Inc.", "82712A", "27-Sep-2017", "Pending"),
-                Invoice("722.50", "Google Inc.", "12345G", "12-Sep-2017", "Pending"),
-                Invoice("450.00", "Acme Inc.", "45119A", "11-Aug-2017", "Paid"),
-                Invoice("2.50", "Google Inc.", "12344G", "12-Jul-2017", "Pending"),
-                Invoice("113.00", "Acme Inc.", "44301A", "07-Jul-2017", "Paid"))
 
-        recycler_invoices.adapter = InvoiceRecyclerViewAdapter(invoices,
-                object: InvoiceRecyclerViewAdapter.onItemClickListener {
-                    override fun onItemClick(position: Int) {
-                        Toast.makeText(applicationContext, "Hello", Toast.LENGTH_LONG).show()
-                    }
-        })
+        val fragment: Fragment = MainFragment()
+        supportFragmentManager.beginTransaction().replace(R.id.main_container, fragment, null).commit();
     }
 
     override fun onBackPressed() {
