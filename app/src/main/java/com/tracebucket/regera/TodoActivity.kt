@@ -1,17 +1,26 @@
 package com.tracebucket.regera
 
+import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
+import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_todo.*
 import kotlinx.android.synthetic.main.app_bar_todo.*
+import kotlinx.android.synthetic.main.content_todo.*
 
-class TodoActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class TodoActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
+MainFragment.OnFragmentInteractionListener {
+    override fun onFragmentInteraction(uri: Uri) {
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +38,9 @@ class TodoActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+
+        val fragment: Fragment = MainFragment()
+        supportFragmentManager.beginTransaction().replace(R.id.main_container, fragment, null).commit();
     }
 
     override fun onBackPressed() {

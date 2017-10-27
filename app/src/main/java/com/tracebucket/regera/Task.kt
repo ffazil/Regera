@@ -1,6 +1,7 @@
 package com.tracebucket.regera
 
 import android.arch.persistence.room.Entity
+import android.arch.persistence.room.Ignore
 import android.arch.persistence.room.PrimaryKey
 
 /**
@@ -12,6 +13,7 @@ class Task() {
     var description: String = ""
     var completed: Boolean = false
 
+    @Ignore
     constructor(description: String, completed: Boolean = false): this() {
         this.description = description
         this.completed = completed
